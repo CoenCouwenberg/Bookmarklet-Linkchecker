@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Bookmarklet</title>
+	</head>
+	<body>
+		<div class="links">
+			<a href="https://schoenen.nl">Schoenen</a><br />
+			<a href="https://sadf.nl">sadf</a><br />
+			<a href="https://inkt.nl">inkt</a><br />
+			<a href="https://wasmachinewebshop.nl">wasmachinewebshop.nl</a>
+		</div>
+
+		<p>
+			This is a
+			<a href='javascript:(function () { const pageTags = document.getElementsByTagName("a"); const checkLinks = [ "schoenen.nl", "jurkenshoponline.nl", "meubelmooi.nl", "vloerkledenshoponline.nl", "vaatwasserwebshop.nl", "koelkastwebshop.nl", "wasmachinewebshop.nl", ]; let pageLinks = []; let filteredLinks = []; for (let i = 0; i < pageTags.length; i++) { let currentLink = pageTags[i].href; pageLinks.push(currentLink); if (currentLink.startsWith("http://")) currentLink = currentLink.substring(7); if (currentLink.startsWith("https://")) currentLink = currentLink.substring(8); if (currentLink.startsWith("www.")) currentLink = currentLink.substring(4); if (currentLink.includes("/")) { currentLink = currentLink.slice(0, currentLink.indexOf("/")); } filteredLinks.push(currentLink); } for (let i = 0; i<filteredLinks.length; i++) { const currentLink = filteredLinks[i]; if (checkLinks.includes(currentLink)) { console.log(`Matching links: ${pageLinks[i]}`); pageTags[i].style.background = "green"; const newDiv = document.createElement("div"); const newContent = document.createTextNode(pageTags[i]); newDiv.appendChild(newContent); newDiv.style.zIndex = 999; newDiv.style.background = "white"; document.body.prepend(newDiv); } } });'>Links</a
+			>
+		</p>
+	</body>
+</html>
