@@ -1,5 +1,6 @@
 (function () {
 	const pageTags = document.getElementsByTagName("a");
+	var linksFound = false;
 	const checkLinks = [
 		"schoenen.nl",
 		"jurkenshoponline.nl",
@@ -33,7 +34,6 @@
 		if (checkLinks.includes(currentLink)) {
 			console.log(`Matching links: ${pageLinks[i]}`);
 			pageTags[i].style.background = "green";
-
 			const newDiv = document.createElement("div");
 
 			const newContent = document.createTextNode(pageTags[i]);
@@ -43,7 +43,14 @@
 			newDiv.style.background = "white";
 
 			document.body.prepend(newDiv);
+			linksFound = true;
+		} else {
+			console.log("No matches found");
 		}
+	}
+
+	if (linksFound === false) {
+		alert("No matches found");
 	}
 });
 
